@@ -68,7 +68,9 @@ def put_item(text, dynamodb=None):
     except ClientError as e:
         print(e.response['Error']['Message'])
     else:
-        return response
+        print('Result putItem:'+str(response))
+        if response is not None:
+            return response
 
 
 def update_item(key, text, checked, dynamodb=None):
@@ -97,7 +99,9 @@ def update_item(key, text, checked, dynamodb=None):
     except ClientError as e:
         print(e.response['Error']['Message'])
     else:
-        return result['Attributes']
+        print('Result updateItem:'+str(result))
+        if 'Attributes' in result:
+            return result['Attributes']
 
 
 def delete_item(key, dynamodb=None):
